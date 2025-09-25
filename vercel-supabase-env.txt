@@ -1,0 +1,70 @@
+# 🚀 Vercel + Supabase 环境变量配置模板
+
+# ===========================================
+# 基础应用配置
+# ===========================================
+APP_NAME=独角数卡
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://your-app.vercel.app
+
+# Laravel 应用密钥（需要生成）
+APP_KEY=base64:your-generated-key
+
+# ===========================================
+# Supabase PostgreSQL 数据库配置
+# ===========================================
+DB_CONNECTION=pgsql
+DB_HOST=db.your-project.supabase.co
+DB_PORT=5432
+DB_DATABASE=postgres
+DB_USERNAME=postgres
+DB_PASSWORD=your-supabase-password
+
+# 或者使用完整的 DATABASE_URL
+# DATABASE_URL=postgresql://postgres:password@db.xxx.supabase.co:5432/postgres
+
+# ===========================================
+# 缓存配置（使用文件缓存）
+# ===========================================
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+QUEUE_CONNECTION=sync
+
+# ===========================================
+# 日志配置
+# ===========================================
+LOG_CHANNEL=stack
+LOG_LEVEL=error
+
+# ===========================================
+# 邮件配置
+# ===========================================
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your-email@gmail.com
+MAIL_PASSWORD=your-app-password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=your-email@gmail.com
+MAIL_FROM_NAME=独角数卡
+
+# ===========================================
+# 文件存储配置（使用 Supabase Storage）
+# ===========================================
+FILESYSTEM_DISK=supabase
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your-anon-key
+SUPABASE_BUCKET=uploads
+
+# ===========================================
+# 独角数卡特定配置
+# ===========================================
+DUJIAO_ADMIN_LANGUAGE=zh_CN
+
+# ===========================================
+# Vercel 特定配置
+# ===========================================
+VERCEL=1
+VERCEL_URL=$VERCEL_URL
