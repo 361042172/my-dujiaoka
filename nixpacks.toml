@@ -1,0 +1,26 @@
+[variables]
+NIXPACKS_PHP_ROOT_DIR = "/"
+NIXPACKS_PHP_FALLBACK_PATH = "/public/index.php"
+
+[phases.setup]
+nixPkgs = ["...", "php81", "php81Packages.composer", "nginx", "nodejs", "npm"]
+
+[phases.install]
+cmds = [
+    "mkdir -p /var/log/nginx /var/cache/nginx",
+    "composer install --no-dev --optimize-autoloader --no-interaction",
+    "npm ci",
+    "npm run production"
+]
+
+[phases.build]
+cmds = [
+    "php artisan config:clear",
+    "php artisan route:clear", 
+    "php artisan view:clear",
+    "chmod -R 755 storage bootstrap/cache",
+    "php artisan storage:link"
+]
+
+[start]
+cmd = "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
