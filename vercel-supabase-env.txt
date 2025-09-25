@@ -1,4 +1,5 @@
 # 🚀 Vercel + Supabase 环境变量配置模板
+# 将这些变量添加到 Vercel 项目的 Environment Variables 中
 
 # ===========================================
 # 基础应用配置
@@ -6,40 +7,58 @@
 APP_NAME=独角数卡
 APP_ENV=production
 APP_DEBUG=false
-APP_URL=https://your-app.vercel.app
+APP_URL=https://your-project.vercel.app
 
-# Laravel 应用密钥（需要生成）
-APP_KEY=base64:your-generated-key
+# Laravel 应用密钥（运行 php artisan key:generate 生成）
+APP_KEY=base64:your-generated-key-here
 
 # ===========================================
 # Supabase PostgreSQL 数据库配置
 # ===========================================
 DB_CONNECTION=pgsql
-DB_HOST=db.your-project.supabase.co
+DB_HOST=db.xxxxxx.supabase.co
 DB_PORT=5432
 DB_DATABASE=postgres
 DB_USERNAME=postgres
 DB_PASSWORD=your-supabase-password
 
-# 或者使用完整的 DATABASE_URL
-# DATABASE_URL=postgresql://postgres:password@db.xxx.supabase.co:5432/postgres
+# Supabase 项目配置
+SUPABASE_URL=https://xxxxxx.supabase.co
+SUPABASE_KEY=your-anon-key
+SUPABASE_SECRET=your-service-role-key
+SUPABASE_DB_HOST=db.xxxxxx.supabase.co
+SUPABASE_DB_PORT=5432
+SUPABASE_DB_DATABASE=postgres
+SUPABASE_DB_USERNAME=postgres
+SUPABASE_DB_PASSWORD=your-supabase-password
 
 # ===========================================
-# 缓存配置（使用文件缓存）
+# Vercel 优化配置
 # ===========================================
-CACHE_DRIVER=file
-SESSION_DRIVER=file
+VERCEL=1
+CACHE_DRIVER=array
+SESSION_DRIVER=cookie
 SESSION_LIFETIME=120
 QUEUE_CONNECTION=sync
-
-# ===========================================
-# 日志配置
-# ===========================================
-LOG_CHANNEL=stack
+LOG_CHANNEL=stderr
 LOG_LEVEL=error
+FILESYSTEM_DISK=local
 
 # ===========================================
-# 邮件配置
+# 路径配置（Vercel 专用）
+# ===========================================
+VIEW_COMPILED_PATH=/tmp/views
+STORAGE_PATH=/tmp/storage
+CACHE_PATH=/tmp/cache
+SESSION_PATH=/tmp/sessions
+
+# ===========================================
+# 禁用不必要的服务
+# ===========================================
+BROADCAST_DRIVER=null
+
+# ===========================================
+# 邮件配置（可选）
 # ===========================================
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.gmail.com
@@ -51,20 +70,14 @@ MAIL_FROM_ADDRESS=your-email@gmail.com
 MAIL_FROM_NAME=独角数卡
 
 # ===========================================
-# 文件存储配置（使用 Supabase Storage）
-# ===========================================
-FILESYSTEM_DISK=supabase
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_KEY=your-anon-key
-SUPABASE_BUCKET=uploads
-
-# ===========================================
 # 独角数卡特定配置
 # ===========================================
 DUJIAO_ADMIN_LANGUAGE=zh_CN
 
 # ===========================================
-# Vercel 特定配置
+# 性能优化配置
 # ===========================================
-VERCEL=1
-VERCEL_URL=$VERCEL_URL
+APP_CONFIG_CACHE=/tmp/config.php
+APP_ROUTES_CACHE=/tmp/routes.php
+APP_PACKAGES_CACHE=/tmp/packages.php
+APP_SERVICES_CACHE=/tmp/services.php

@@ -25,6 +25,19 @@ require __DIR__.'/../vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
+| Load Vercel Environment Configuration
+|--------------------------------------------------------------------------
+| 
+| Load Vercel specific configuration if running on Vercel platform
+|
+*/
+
+if (file_exists(__DIR__.'/../bootstrap/vercel.php')) {
+    require __DIR__.'/../bootstrap/vercel.php';
+}
+
+/*
+|--------------------------------------------------------------------------
 | Turn On The Lights
 |--------------------------------------------------------------------------
 |

@@ -93,46 +93,70 @@ composer require supabase/supabase-php
 1. 访问 [vercel.com](https://vercel.com/)
 2. 使用 GitHub 登录
 3. 点击 "New Project"
-4. 选择你的独角数卡仓库
+4. 选择你的独角数卡仓库 (`361042172/my-dujiaoka`)
 
 ### 3.2 配置项目设置
-1. **Framework Preset**: Other
-2. **Root Directory**: 保持为根目录
-3. **Build Command**: `composer install --no-dev --optimize-autoloader`
-4. **Output Directory**: 保持默认
+**重要：** 在 Vercel 项目设置中配置以下选项：
+
+1. **Framework Preset**: `Other`
+2. **Root Directory**: 保持为根目录 (`./`)
+3. **Build Command**: `bash build.sh`
+4. **Output Directory**: 保持默认 (留空)
 5. **Install Command**: 保持默认
+6. **Node.js Version**: `18.x`
 
-### 3.3 添加环境变量
-在 Vercel 项目设置中添加环境变量（参考 `vercel-supabase-env.txt`）：
+### 3.3 添加环境变量 ⭐ **关键步骤**
+在 Vercel 项目 Settings → Environment Variables 中添加以下变量：
 
+**📋 复制这些变量到 Vercel：**
 ```bash
 # 基础配置
 APP_NAME=独角数卡
 APP_ENV=production
 APP_DEBUG=false
-APP_URL=https://your-project.vercel.app
+APP_URL=https://your-project-name.vercel.app
 
-# Supabase 数据库
+# 应用密钥（先用占位符，稍后生成）
+APP_KEY=base64:placeholder
+
+# Supabase 数据库（替换为你的实际值）
 DB_CONNECTION=pgsql
-DB_HOST=db.your-project.supabase.co
+DB_HOST=db.xxxxxx.supabase.co
 DB_PORT=5432
 DB_DATABASE=postgres
 DB_USERNAME=postgres
 DB_PASSWORD=your-supabase-password
 
-# 缓存配置
+# Vercel 优化配置
+VERCEL=1
 CACHE_DRIVER=array
-SESSION_DRIVER=array
+SESSION_DRIVER=cookie
 QUEUE_CONNECTION=sync
+LOG_CHANNEL=stderr
+FILESYSTEM_DISK=local
+
+# 路径配置
+VIEW_COMPILED_PATH=/tmp/views
+STORAGE_PATH=/tmp/storage
 
 # 独角数卡配置
 DUJIAO_ADMIN_LANGUAGE=zh_CN
 ```
 
 ### 3.4 部署项目
-1. 点击 "Deploy"
-2. 等待构建完成
-3. 查看部署日志，解决可能的错误
+1. **点击 "Deploy"**
+2. **等待构建完成**（首次构建可能需要 5-10 分钟）
+3. **查看构建日志**：
+   - 成功：显示 "✅ Vercel 构建完成！"
+   - 失败：查看错误信息并调试
+
+### 3.5 获取部署 URL
+部署成功后，Vercel 会提供一个 URL，格式如：
+```
+https://my-dujiaoka-xxx.vercel.app
+```
+
+**⚠️ 重要：** 将这个 URL 更新到环境变量 `APP_URL` 中
 
 ---
 
