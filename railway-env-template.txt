@@ -13,29 +13,34 @@ APP_URL=https://your-project-name.railway.app
 APP_KEY=
 
 # ===========================================
-# 数据库配置（使用Railway自动生成的变量）
+# 数据库配置（SQLite - 免费方案）
 # ===========================================
-DB_CONNECTION=mysql
-DB_HOST=${MYSQLHOST}
-DB_PORT=${MYSQLPORT}
-DB_DATABASE=${MYSQLDATABASE}
-DB_USERNAME=${MYSQLUSER}
-DB_PASSWORD=${MYSQLPASSWORD}
+DB_CONNECTION=sqlite
+DB_DATABASE=/tmp/database.sqlite
+
+# 如果使用 MySQL（需要付费计划）
+# DB_CONNECTION=mysql
+# DB_HOST=${MYSQLHOST}
+# DB_PORT=${MYSQLPORT}
+# DB_DATABASE=${MYSQLDATABASE}
+# DB_USERNAME=${MYSQLUSER}
+# DB_PASSWORD=${MYSQLPASSWORD}
 
 # ===========================================
-# Redis配置（使用Railway自动生成的变量）
+# 缓存和会话配置（文件缓存 - 免费方案）
 # ===========================================
-REDIS_HOST=${REDISHOST}
-REDIS_PASSWORD=${REDISPASSWORD}
-REDIS_PORT=${REDISPORT}
-
-# ===========================================
-# 缓存和会话配置
-# ===========================================
-CACHE_DRIVER=redis
-SESSION_DRIVER=redis
+CACHE_DRIVER=file
+SESSION_DRIVER=file
 SESSION_LIFETIME=120
-QUEUE_CONNECTION=redis
+QUEUE_CONNECTION=sync
+
+# 如果使用 Redis（需要付费计划）
+# REDIS_HOST=${REDISHOST}
+# REDIS_PASSWORD=${REDISPASSWORD}
+# REDIS_PORT=${REDISPORT}
+# CACHE_DRIVER=redis
+# SESSION_DRIVER=redis
+# QUEUE_CONNECTION=redis
 
 # ===========================================
 # 日志配置
